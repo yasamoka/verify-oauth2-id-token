@@ -12,7 +12,7 @@ from .constant import MICROSOFT_LOGIN_PROVIDER_URL
 from .func import microsoft_check_algorithm
 from .model import (
     MicrosoftOAuth2IDToken,
-    MicrosoftOAuth2JWK,
+    MicrosoftOAuth2JWKS,
     MicrosoftOAuth2JWTHeader,
     MicrosoftOAuth2OpenIDConfiguration,
 )
@@ -28,11 +28,11 @@ def verify_microsoft_oauth2_id_token(
         session=session,
         Model=MicrosoftOAuth2OpenIDConfiguration,
     )
-    jwks = get_jwks(
+    jwks_json = get_jwks(
         openid_configuration=openid_configuration,
         session=session,
-        Model=MicrosoftOAuth2JWK,
     )
+    jwks = MicrosoftOAuth2JWKS.validate(jwks_json)
 
     unverified_jwt_header = get_unverified_jwt_header(
         id_token=id_token, Model=MicrosoftOAuth2JWTHeader

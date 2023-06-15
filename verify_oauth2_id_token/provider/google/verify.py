@@ -14,7 +14,7 @@ from .constant import GOOGLE_LOGIN_PROVIDER_URL
 from .func import google_check_algorithm
 from .model import (
     GoogleOAuth2IDToken,
-    GoogleOAuth2JWK,
+    GoogleOAuth2JWKS,
     GoogleOAuth2JWTHeader,
     GoogleOAuth2OpenIDConfiguration,
 )
@@ -28,11 +28,11 @@ def verify_google_oauth2_id_token(id_token: str, client_id: str) -> GoogleOAuth2
         session=session,
         Model=GoogleOAuth2OpenIDConfiguration,
     )
-    jwks = get_jwks(
+    jwks_json = get_jwks(
         openid_configuration=openid_configuration,
         session=session,
-        Model=GoogleOAuth2JWK,
     )
+    jwks = GoogleOAuth2JWKS.validate(jwks_json)
 
     unverified_jwt_header = get_unverified_jwt_header(
         id_token=id_token, Model=GoogleOAuth2JWTHeader

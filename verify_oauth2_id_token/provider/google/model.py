@@ -6,6 +6,7 @@ from pydantic.networks import EmailStr, HttpUrl
 from ..common.model import (
     OAuth2IDTokenBase,
     OAuth2JWKBase,
+    OAuth2JWKS,
     OAuth2JWTHeaderBase,
     OAuth2OpenIDConfigurationBase,
 )
@@ -33,6 +34,10 @@ class GoogleOAuth2IDToken(OAuth2IDTokenBase):
 class GoogleOAuth2JWK(OAuth2JWKBase):
     alg: str
     use: str
+
+
+class GoogleOAuth2JWKS(OAuth2JWKS[GoogleOAuth2JWK]):
+    keys: list[GoogleOAuth2JWK]
 
 
 class GoogleOAuth2JWTHeader(OAuth2JWTHeaderBase):

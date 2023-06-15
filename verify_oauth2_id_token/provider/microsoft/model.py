@@ -1,11 +1,12 @@
 from typing import Literal
 
-from pydantic import field_validator
+from pydantic.class_validators import validator
 from pydantic.networks import HttpUrl
 
 from ..common.model import (
     OAuth2IDTokenBase,
     OAuth2JWKBase,
+    OAuth2JWKS,
     OAuth2JWTHeaderBase,
     OAuth2OpenIDConfigurationBase,
 )
@@ -37,7 +38,7 @@ class MicrosoftOAuth2IDToken(OAuth2IDTokenBase):
     uti: str
     ver: str
 
-    @field_validator("iss", mode="after")
+    @validator("iss")
     def validate_iss(cls, v: str):
         assert v.startswith("https://login.microsoftonline.com")
         return v
@@ -45,6 +46,10 @@ class MicrosoftOAuth2IDToken(OAuth2IDTokenBase):
 
 class MicrosoftOAuth2JWK(OAuth2JWKBase):
     pass
+
+
+class MicrosoftOAuth2JWKS(OAuth2JWKS[MicrosoftOAuth2JWK]):
+    keys: list[MicrosoftOAuth2JWK]
 
 
 class MicrosoftOAuth2JWTHeader(OAuth2JWTHeaderBase):

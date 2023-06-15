@@ -16,7 +16,7 @@ packages = [
 python = "^3.10"
 cryptography = "^41.0.1"
 pycryptodome = "^3.18.0"
-pydantic = { version = ">=2.0b2", extras = ["email"] }
+pydantic = { version = "^1.10.9", extras = ["email"] }
 pyjwt = "^2.7.0"
 requests-cache = "^1.0.1"
 
