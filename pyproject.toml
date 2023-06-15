@@ -1,8 +1,16 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "verify-oauth2-id-token"
 version = "0.0.1"
 description = " Straightforward OAuth2 ID Token verification with support for Google and Microsoft OAuth service providers"
 authors = ["Ramzi Sabra"]
+homepage = "https://github.com/yasamoka/verify-oauth2-id-token"
+packages = [
+    { include = "verify_oauth2_id_token" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,6 +21,6 @@ pyjwt = "^2.7.0"
 requests-cache = "^1.0.1"
 
 [tool.pyright]
-include = ["."]
+include = ["verify_oauth2_id_token"]
 typeCheckingMode = "strict"
 venvPath = ".venv"
