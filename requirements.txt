@@ -1,5 +1,0 @@
-cryptography
-pycryptodome
-pydantic
-pyjwt
-requests-cache

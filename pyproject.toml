@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "verify-oauth2-id-token"
+version = "0.0.1"
+description = " Straightforward OAuth2 ID Token verification with support for Google and Microsoft OAuth service providers"
+authors = ["Ramzi Sabra"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+cryptography = "^41.0.1"
+pycryptodome = "^3.18.0"
+pydantic = { version = ">=2.0b2", extras = ["email"] }
+pyjwt = "^2.7.0"
+requests-cache = "^1.0.1"
+
+[tool.pyright]
+include = ["."]
+typeCheckingMode = "strict"
+venvPath = ".venv"
